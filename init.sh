@@ -11,4 +11,4 @@ echo "[info] Detected IP is ${IP}"
 
 echo "[info] Starting podcats Web Server..."
 
-/usr/local/bin/podcats serve /music --host ${IP} --title "$PODCATS_TITLE"
+/usr/local/bin/podcats serve /music --host ${DOCKER_HOST} --title "$PODCATS_TITLE"
