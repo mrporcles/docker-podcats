@@ -7,6 +7,4 @@ ADD init.sh /root/
 
 VOLUME ["/music"]
 
-EXPOSE 5000/tcp
-
 CMD ["/bin/sh", "/root/init.sh"]
