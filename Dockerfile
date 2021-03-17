@@ -1,4 +1,4 @@
-FROM python:3.7.9-alpine3.12
+FROM python:alpine
 LABEL AUTHOR="Paul Wiggett <mrporcles@gmail.com>"
 
 RUN apk update & apk upgrade & pip install podcats
