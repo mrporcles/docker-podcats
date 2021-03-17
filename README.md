@@ -4,6 +4,6 @@ This repo contains a Dockerfile to run [podcats](https://github.com/jakubroztoci
 
 Volume */music* should be mapped to the location of local media files.
 
-RSS feed and we interface are exposed via TCP port 5000
+RSS feed and web interface are exposed via TCP port 5000
 
-Use the *PODCATS_TITLE* environment variable to add a cuustom title for the RSS feed. It will default to the name of the music directory.
+Use the *PODCATS_TITLE* environment variable to add a custom title for the RSS feed. It will default to the name of the music directory.
