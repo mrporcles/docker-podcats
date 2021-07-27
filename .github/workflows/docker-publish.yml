@@ -19,7 +19,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: mrporcles/podcats:latest
 
 
 jobs:
@@ -59,5 +59,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: mrporcles/podcats:latest
+          tags: ${{ github.repository }}
           labels: ${{ steps.meta.outputs.labels }}
