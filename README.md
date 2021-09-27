@@ -13,3 +13,6 @@ This repo contains a Dockerfile to run [podcats](https://github.com/jakubroztoci
 ```sh
 docker run -d --name='podcats' --net='host' -e 'PODCATS_TITLE'='My Cool Music' -e 'TCP_PORT_5000'='5000' -v '/localmusic':'/music':'ro,slave' -e "BRIDGE_IP=$(ip -4 addr show br0 | grep -Po 'inet \K[\d.]+')" 'mrporcles/podcats:latest'
 ```
+
+
+27-09-2021
