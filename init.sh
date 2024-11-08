@@ -1,17 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
 # exit script if return code != 0
 set -e
 
-echo "[info] Detecting configured host port"
-
-HOST_PORT=`env |grep -i port |cut -f2 -d "="`
-
-echo "[info] Detected host port is ${HOST_PORT}"
-
-echo "[info] Detecting host Bridge interface IP..."
-
-echo "[info] Detected IP is ${BRIDGE_IP}"
+if [ -z "${PODCATS_HOSTNAME}" ];
+ then
+    echo "[error] PODCATS_HOSTNAME environment variable not set"
+    exit 1
+ else
+    echo "[info] PODCATS_HOSTNAME environment variable set to ${PODCATS_HOSTNAME}"
+    echo "[info] Adding to hosts file"
+    cp /etc/hosts /etc/hosts2
+    sed -i '/^.* '${PODCATS_HOSTNAME}'$/b; 1s/.*/&\ '${PODCATS_HOSTNAME}'/' /etc/hosts2
+    cat /etc/hosts2 > /etc/hosts
+    rm /etc/hosts2
+fi
 
 echo "[info] Starting podcats Web Server..."
-/usr/local/bin/podcats serve /music --host ${BRIDGE_IP} --port ${HOST_PORT} --title "$PODCATS_TITLE"
+/usr/local/bin/podcats serve /music --host ${PODCATS_HOSTNAME} --title "${PODCATS_TITLE}"

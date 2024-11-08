@@ -1,7 +1,7 @@
 FROM python:alpine
 LABEL AUTHOR="Paul Wiggett <mrporcles@gmail.com>"
 
-RUN apk update & apk upgrade & pip install podcats
+RUN apk update & apk upgrade & pip install git+https://github.com/mrporcles/podcats@external
 
 ADD init.sh /root/
 
