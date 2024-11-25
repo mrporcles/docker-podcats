@@ -9,6 +9,4 @@ podcats --host "$PODCATS_HOSTNAME" --title "$PODCATS_TITLE" generate_html "$PODC
 
 ln -s "$PODCATS_MUSIC" /usr/share/nginx/html/static
 
-cp "$PODCATS_MUSIC"/favicon.ico /usr/share/nginx/html/
-
 nginx -g 'daemon off;'
