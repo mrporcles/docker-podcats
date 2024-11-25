@@ -7,6 +7,8 @@ podcats --host "$PODCATS_HOSTNAME" --title "$PODCATS_TITLE" generate "$PODCATS_M
 
 podcats --host "$PODCATS_HOSTNAME" --title "$PODCATS_TITLE" generate_html "$PODCATS_MUSIC" |sed 's/\\n//g' |sed 's/^..//' > /usr/share/nginx/html/podcast.html
 
-cp /usr/share/nginx/html/static/favicon.ico /usr/share/nginx/html/
+ln -s "$PODCATS_MUSIC" /usr/share/nginx/html/static
+
+cp "$PODCATS_MUSIC"/favicon.ico /usr/share/nginx/html/
 
 nginx -g 'daemon off;'
