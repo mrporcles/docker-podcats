@@ -7,7 +7,7 @@ name: Build Docker Image - External
 
 on:
   schedule:
-    - cron: '55 23 * * *'
+    - cron: '55 23 * * 0'
   push:
     branches: [ main ]
     # Publish semver tags as releases.
@@ -53,7 +53,14 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags:
+          tags: |
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+            type=sha,format=long
+            type=schedule,pattern={{date 'YYYYMMDD-HHmmss'}}
+            type=raw,value={{date 'YYYYMMDD-HHmmss'}},enable=${{ github.event_name != 'schedule' }}
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
             type=raw, value=external
 
       # Build and push Docker image with Buildx (don't push on PR)
