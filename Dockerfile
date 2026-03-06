@@ -5,7 +5,7 @@ ARG PODCATS_HOSTNAME=build
 ARG PODCATS_MUSIC="/music"
 ARG PODCATS_TITLE="test"
 
-RUN apk update && apk add git py-pip && apk upgrade && pip install git+https://github.com/mrporcles/podcats@external --break-system-packages
+RUN apk update && apk add git py-pip apache2-utils && apk upgrade && pip install git+https://github.com/mrporcles/podcats@external --break-system-packages
 
 VOLUME ["/music"]
 

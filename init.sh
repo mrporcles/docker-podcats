@@ -3,6 +3,11 @@
 # exit script if return code != 0
 set -e
 
+# Generate .htpasswd file if credentials are provided
+if [ -n "$WEB_USER" ] && [ -n "$WEB_PASSWORD" ]; then
+    htpasswd -bc /etc/nginx/.htpasswd "$HTPASSWD_USER" "$HTPASSWD_PASS"
+fi
+
 podcats --host "$PODCATS_HOSTNAME" --title "$PODCATS_TITLE" --link "$PODCATS_LINK" --description "$PODCATS_DESCRIPTION" generate "$PODCATS_MUSIC" > /usr/share/nginx/html/podcast.xml
 
 podcats --host "$PODCATS_HOSTNAME" --title "$PODCATS_TITLE" --link "$PODCATS_LINK" --description "$PODCATS_DESCRIPTION" generate_html "$PODCATS_MUSIC" > /usr/share/nginx/html/podcast.html
